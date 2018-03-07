@@ -46,6 +46,8 @@
 #'   (\url{http://docs.casperjs.org/en/latest/modules/casper.html}) for more
 #'   information about what commands can be used to control the web page. NOTE:
 #'   This is experimental and likely to change!
+#' @param key An optional string containing a Connect API key so that webshot
+#'   can access a restricted site to capture a screenshot
 #' @param debug Print out debugging messages from PhantomJS and CasperJS. This can help to
 #'   diagnose problems.
 #'
@@ -125,6 +127,7 @@ webshot <- function(
   delay = 0.2,
   zoom = 1,
   eval = NULL,
+  key = NULL,
   debug = FALSE
 ) {
 
@@ -221,6 +224,7 @@ webshot <- function(
   if (!is.null(delay)) optsList$delay <- delay
   if (!is.null(zoom)) optsList$zoom <- zoom
   if (!is.null(eval)) optsList$eval <- eval
+  if (!is.null(key))  optsList$key  <- key
   optsList$debug <- debug
 
   args <- list(

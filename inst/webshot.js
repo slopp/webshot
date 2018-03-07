@@ -56,6 +56,14 @@ var casper = require('casper').create(casperOpts);
 // Screenshot
 // =====================================================================
 
+casper.on('started', function () {
+  if (optsList[0].key) {
+    this.page.customHeaders = {
+      "Authorization" : "Key " + optsList[0].key
+    }
+  }
+});
+
 casper.start();
 casper.options.onLoadError = function(c, url) {
   console.log("Could not load ", url);
